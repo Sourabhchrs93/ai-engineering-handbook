@@ -18,10 +18,11 @@ The guided curriculum begins with [LLM fundamentals](foundations/llm-fundamental
 | Area | Question it answers |
 | --- | --- |
 | [Foundations](foundations/index.md) | What primitives and trade-offs matter? |
-| [Building](building/index.md) | How should the application be assembled? |
-| [Evaluation](evaluation/index.md) | How do we know a change is better? |
+| [Prompting](prompting/index.md) | How should model instructions and context be designed? |
+| [RAG](rag/index.md) | How can responses be grounded in external evidence? |
+| [Agents](agents/index.md) | How can models select and use actions safely? |
 | [Production](production/index.md) | How do we keep the system reliable and safe? |
-| [Playbooks](playbooks/production-readiness.md) | What should a team check before shipping? |
+| [Production readiness](production/production-readiness-review.md) | What should a team check before shipping? |
 
 !!! note "A living handbook"
     AI engineering changes quickly. Chapters should distinguish durable principles from provider-specific details and attach dates to claims that may drift.

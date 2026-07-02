@@ -1,6 +1,6 @@
 # Module 1 learning journal: Q&A and insights
 
-This page preserves the learner's initial mental models and the corrections produced through Socratic review. It complements the canonical [LLM fundamentals](../foundations/llm-fundamentals.md) chapter.
+This page preserves the learner's initial mental models and the corrections produced through Socratic review. It complements the canonical [LLM fundamentals](llm-fundamentals.md) chapter.
 
 ## Why are tokens different from words?
 
@@ -57,4 +57,3 @@ planner -> tool -> fresh context -> LLM
 - How does multi-head attention learn different relationships?
 - How do positional representations preserve order?
 - How does instruction tuning change model behavior?
-

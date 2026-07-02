@@ -41,4 +41,4 @@ mkdocs.yml          Site navigation and configuration
 
 ## Contributing
 
-Start with [AGENTS.md](AGENTS.md) and the [contribution guide](docs/contributing.md). Keep chapters practical, cite primary sources, and include concrete failure modes alongside the happy path.
+Start with [AGENTS.md](AGENTS.md) and the [contribution guide](CONTRIBUTING.md). Keep chapters practical, cite primary sources, and include concrete failure modes alongside the happy path.

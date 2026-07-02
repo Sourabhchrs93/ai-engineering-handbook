@@ -2,7 +2,7 @@
 
 Contributions should make a reader more capable of making or implementing an engineering decision.
 
-Read the repository-wide conventions in `AGENTS.md` before making substantial changes. Use `templates/chapter.md` for new chapters and `templates/example/` for runnable examples.
+Read the repository-wide conventions in `AGENTS.md` before making substantial changes. Use `templates/chapter-template.md` for new chapters and `templates/example/` for runnable examples.
 
 ## Writing guidelines
 

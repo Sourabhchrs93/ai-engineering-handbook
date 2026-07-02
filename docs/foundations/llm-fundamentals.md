@@ -222,5 +222,4 @@ Control logic selects an appropriate tool, the tool retrieves current data, and 
 
 ## Learning journal
 
-The [Module 1 Q&A and insights](../learning-journal/module-01-qa.md) preserve the original answers, corrections, and questions to revisit.
-
+The [Module 1 Q&A and insights](llm-fundamentals-qa.md) preserve the original answers, corrections, and questions to revisit.

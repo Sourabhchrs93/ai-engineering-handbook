@@ -33,28 +33,28 @@ nav:
   - Foundations:
       - Overview: foundations/index.md
       - LLM fundamentals: foundations/llm-fundamentals.md
+      - Module 1 Q&A and insights: foundations/llm-fundamentals-qa.md
       - Model selection: foundations/model-selection.md
-  - Building:
-      - Overview: building/index.md
-      - Prompt engineering: building/prompt-engineering.md
-      - Retrieval-augmented generation: building/rag.md
-      - Agents and tool use: building/agents.md
-  - Agents: agents/index.md
-  - RAG: rag/index.md
+      - AI application pipeline: foundations/ai-application-pipeline.md
+  - Prompting:
+      - Overview: prompting/index.md
+      - Prompt engineering: prompting/prompt-engineering.md
+  - Tool calling: tool-calling/index.md
+  - RAG:
+      - Overview: rag/index.md
+      - Retrieval-augmented generation: rag/retrieval-augmented-generation.md
+  - Memory: memory/index.md
+  - Agents:
+      - Overview: agents/index.md
+      - Agents and tool use: agents/agents-and-tool-use.md
   - MCP: mcp/index.md
-  - Evaluation:
-      - Overview: evaluation/index.md
   - Production:
       - Overview: production/index.md
+      - Evaluation: production/evaluation.md
       - Reliability: production/reliability.md
       - Security and privacy: production/security.md
-  - Playbooks:
-      - Production readiness review: playbooks/production-readiness.md
-  - Learning journal:
-      - Module 1 Q&A: learning-journal/module-01-qa.md
+      - Production readiness review: production/production-readiness-review.md
   - Interview preparation: interview/index.md
-  - Glossary: glossary.md
-  - Contributing: contributing.md
 
 markdown_extensions:
   - admonition

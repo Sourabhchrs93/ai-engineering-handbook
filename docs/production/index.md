@@ -11,5 +11,4 @@ Track at least:
 - retrieval quality and data freshness;
 - model, prompt, and index versions.
 
-See [reliability](reliability.md), [security and privacy](security.md), and the [production readiness review](../playbooks/production-readiness.md).
-
+See [evaluation](evaluation.md), [reliability](reliability.md), [security and privacy](security.md), and the [production readiness review](production-readiness-review.md).
