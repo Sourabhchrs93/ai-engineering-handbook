@@ -6,6 +6,8 @@ This repository is a practical AI Engineering Handbook for senior, staff, and pr
 
 The handbook is a learning system, not a collection of vendor documentation. Explain why a mechanism exists, how it works, where it fails, and how an experienced engineer should operate it in production.
 
+These instructions apply to every AI coding or writing assistant working in the repository, including Codex, ChatGPT, Claude, and similar tools.
+
 ## Source of truth
 
 - `ROADMAP.md` defines the learning sequence and module status.
@@ -16,6 +18,16 @@ The handbook is a learning system, not a collection of vendor documentation. Exp
 - `templates/` defines the expected structure for new material.
 
 Do not copy raw chat transcripts into the handbook. Convert discussions into durable explanations while preserving valuable personal Q&A in the learning journal.
+
+## Non-negotiable rules
+
+- Explain **why** before **how**.
+- Prefer first-principles explanations over framework descriptions.
+- Avoid buzzwords, marketing claims, and shallow summaries.
+- Do not invent technical claims, citations, benchmarks, or implementation results.
+- Preserve existing information when reorganizing or editing content.
+- State uncertainty and mark incomplete sections rather than filling gaps speculatively.
+- Keep architecture proportional to the problem; do not introduce agents where deterministic workflows suffice.
 
 ## Audience and voice
 
@@ -28,7 +40,7 @@ Do not copy raw chat transcripts into the handbook. Convert discussions into dur
 
 ## Chapter standard
 
-Use `templates/chapter.md` for substantial chapters. Every chapter should include, when applicable:
+Use `templates/chapter-template.md` for substantial chapters. Every chapter should include, when applicable:
 
 1. Metadata and prerequisites
 2. Learning objectives
@@ -38,7 +50,7 @@ Use `templates/chapter.md` for substantial chapters. Every chapter should includ
 6. A minimal example
 7. Common misconceptions and failure modes
 8. Production considerations
-9. Interview-ready questions
+9. Interview questions
 10. Exercises
 11. Primary references
 
@@ -73,4 +85,3 @@ Before considering a change complete:
 - Update `ROADMAP.md` when module status changes.
 - Update the glossary when introducing durable terminology.
 - Preserve learner-specific Q&A when revising a learning-journal page.
-

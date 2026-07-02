@@ -1,0 +1,66 @@
+# Handbook contents
+
+## Start here
+
+- [Handbook introduction](docs/index.md)
+- [Learning roadmap](ROADMAP.md)
+- [Glossary](glossary.md)
+
+## Foundations
+
+- [Foundations overview](docs/foundations/index.md)
+- [LLM fundamentals](docs/foundations/llm-fundamentals.md)
+- [Module 1 Q&A and insights](docs/foundations/llm-fundamentals-qa.md)
+- [Model selection](docs/foundations/model-selection.md)
+- [AI application pipeline](docs/foundations/ai-application-pipeline.md)
+
+## Prompt engineering
+
+- [Prompting overview](docs/prompting/index.md)
+- [Prompt engineering](docs/prompting/prompt-engineering.md)
+
+## Tool calling
+
+- [Tool calling overview](docs/tool-calling/index.md)
+
+## Retrieval-augmented generation
+
+- [RAG overview](docs/rag/index.md)
+- [Retrieval-augmented generation](docs/rag/retrieval-augmented-generation.md)
+
+## Memory
+
+- [Memory overview](docs/memory/index.md)
+
+## Agents
+
+- [Agents overview](docs/agents/index.md)
+- [Agents and tool use](docs/agents/agents-and-tool-use.md)
+
+## Production AI
+
+- [Production overview](docs/production/index.md)
+- [Evaluation](docs/production/evaluation.md)
+- [Reliability](docs/production/reliability.md)
+- [Security and privacy](docs/production/security.md)
+- [Production readiness review](docs/production/production-readiness-review.md)
+
+## Model Context Protocol
+
+- [MCP overview](docs/mcp/index.md)
+
+## Interview preparation
+
+- [Interview preparation](docs/interview/index.md)
+
+## Examples and projects
+
+- [Examples](examples/README.md)
+- [Projects](projects/README.md)
+- [Diagrams](diagrams/README.md)
+
+## Project documentation
+
+- [Contributing](CONTRIBUTING.md)
+- [Instructions for AI assistants](AGENTS.md)
+

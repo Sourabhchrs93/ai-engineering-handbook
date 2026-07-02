@@ -32,9 +32,25 @@ Running a trained model to produce predictions or generated output.
 
 A neural language model trained at scale to predict tokens from context.
 
+## Memory
+
+Application-managed information retained or retrieved beyond the model's immediate computation, such as conversation history, durable state, or stored knowledge.
+
+## Model Context Protocol
+
+A protocol for connecting AI applications to external tools and context sources through defined client-server interfaces.
+
+## Planner
+
+The component or policy that determines which step or action should occur next in a multi-step AI workflow.
+
 ## Retrieval-augmented generation
 
 A pattern that retrieves external evidence at request time and supplies it to a generative model as context.
+
+## Tool calling
+
+A pattern in which a model produces a structured request for application code to validate and execute against a defined tool interface.
 
 ## Token
 
@@ -47,4 +63,3 @@ An integer that identifies a token in a model's vocabulary; the number itself ha
 ## Transformer
 
 A neural-network architecture built around attention and feed-forward layers that constructs contextual representations.
-

@@ -13,8 +13,8 @@ Learn AI agents like a Staff or Principal Backend Engineer: start with the under
 | 3 | Tool calling | Build constrained, validated model-to-software interfaces | Planned |
 | 4 | Retrieval-augmented generation | Ground responses in private and changing knowledge | Planned |
 | 5 | Memory | Separate conversational, semantic, and operational state | Planned |
-| 6 | Single-agent systems | Implement a bounded observe-decide-act loop | Planned |
-| 7 | Planning | Compare ReAct and plan-and-execute patterns | Planned |
+| 6 | Planning | Compare ReAct and plan-and-execute patterns | Planned |
+| 7 | Single-agent systems | Implement a bounded observe-decide-act loop | Planned |
 | 8 | Multi-agent systems | Identify when specialization offsets coordination cost | Planned |
 | 9 | Production architecture | Add reliability, evaluation, observability, security, and cost controls | Planned |
 | 10 | Model Context Protocol | Connect agents to tools and context through a standard protocol | Planned |
@@ -28,8 +28,8 @@ flowchart LR
     A["LLM fundamentals"] --> B["Prompts"]
     B --> C["Tool calling"]
     C --> D["RAG and memory"]
-    D --> E["Single agent"]
-    E --> F["Planning"]
+    D --> E["Planning"]
+    E --> F["Single agent"]
     F --> G["Multi-agent"]
     G --> H["Production architecture"]
     H --> I["MCP"]
@@ -43,4 +43,3 @@ flowchart LR
 - **Capability examples:** one runnable example for tokens, embeddings, attention, tool calling, RAG, and planning.
 - **Progressive projects:** chatbot, RAG chat, single agent, multi-agent system, and production agent.
 - **Production readiness:** automated evaluation, traces, security review, deployment guidance, and incident playbooks.
-
