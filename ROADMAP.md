@@ -9,8 +9,8 @@ Learn AI agents like a Staff or Principal Backend Engineer: start with the under
 | Module | Topic | Outcome | Status |
 | --- | --- | --- | --- |
 | 1 | LLM fundamentals | Explain tokens, embeddings, attention, Transformers, and hallucinations | Complete |
-| 2 | Prompt engineering and in-context learning | Design and evaluate reliable instruction interfaces | Next |
-| 3 | Tool calling | Build constrained, validated model-to-software interfaces | Planned |
+| 2 | Prompt engineering and in-context learning | Design and evaluate reliable instruction interfaces | Complete |
+| 3 | Tool calling | Build constrained, validated model-to-software interfaces | Next |
 | 4 | Retrieval-augmented generation | Ground responses in private and changing knowledge | Planned |
 | 5 | Memory | Separate conversational, semantic, and operational state | Planned |
 | 6 | Planning | Compare ReAct and plan-and-execute patterns | Planned |

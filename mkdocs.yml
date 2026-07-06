@@ -39,6 +39,7 @@ nav:
   - Prompting:
       - Overview: prompting/index.md
       - Prompt engineering: prompting/prompt-engineering.md
+      - Module 2 Q&A and insights: prompting/prompt-engineering-qa.md
   - Tool calling: tool-calling/index.md
   - RAG:
       - Overview: rag/index.md

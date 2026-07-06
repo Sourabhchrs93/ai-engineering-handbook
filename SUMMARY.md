@@ -18,6 +18,7 @@
 
 - [Prompting overview](docs/prompting/index.md)
 - [Prompt engineering](docs/prompting/prompt-engineering.md)
+- [Module 2 Q&A and insights](docs/prompting/prompt-engineering-qa.md)
 
 ## Tool calling
 
