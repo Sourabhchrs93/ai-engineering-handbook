@@ -34,26 +34,46 @@ nav:
       - Overview: foundations/index.md
       - LLM fundamentals: foundations/llm-fundamentals.md
       - Module 1 Q&A and insights: foundations/llm-fundamentals-qa.md
+      - Sampling and structured output: foundations/sampling-and-structured-output.md
+      - Latency, cost, and rate limits: foundations/latency-cost-and-rate-limits.md
+      - Failure modes and nondeterminism: foundations/failure-modes-and-nondeterminism.md
       - Model selection: foundations/model-selection.md
       - AI application pipeline: foundations/ai-application-pipeline.md
   - Prompting:
       - Overview: prompting/index.md
       - Prompt engineering: prompting/prompt-engineering.md
       - Module 2 Q&A and insights: prompting/prompt-engineering-qa.md
-  - Tool calling: tool-calling/index.md
+  - Tool calling:
+      - Overview: tool-calling/index.md
+      - Tool calling: tool-calling/tool-calling.md
   - RAG:
       - Overview: rag/index.md
       - Retrieval-augmented generation: rag/retrieval-augmented-generation.md
-  - Memory: memory/index.md
+      - Ingestion and chunking: rag/ingestion-and-chunking.md
+      - Retrieval and ranking: rag/retrieval-and-ranking.md
+      - Grounding and evaluation: rag/grounding-and-evaluation.md
+      - Multi-tenant RAG: rag/multi-tenant-rag.md
+  - Memory:
+      - Overview: memory/index.md
+      - Context engineering: memory/context-engineering.md
+      - Durable memory: memory/durable-memory.md
+      - Checkpointing and recovery: memory/checkpointing-and-recovery.md
+  - Planning:
+      - Overview: planning/index.md
+      - Planning: planning/planning.md
   - Agents:
       - Overview: agents/index.md
       - Agents and tool use: agents/agents-and-tool-use.md
+      - Multi-agent systems: agents/multi-agent-systems.md
   - MCP: mcp/index.md
   - Production:
       - Overview: production/index.md
       - Evaluation: production/evaluation.md
+      - Observability: production/observability.md
       - Reliability: production/reliability.md
       - Security and privacy: production/security.md
+      - Cost and routing: production/cost-and-routing.md
+      - Human approval: production/human-approval.md
       - Production readiness review: production/production-readiness-review.md
   - Interview preparation: interview/index.md
 

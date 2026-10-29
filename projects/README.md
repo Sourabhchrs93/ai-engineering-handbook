@@ -9,4 +9,3 @@ End-to-end projects combine concepts introduced by the handbook:
 5. Production agent
 
 Projects are added only after their prerequisite chapters and minimal examples exist.
-

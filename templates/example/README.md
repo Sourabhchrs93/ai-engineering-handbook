@@ -17,4 +17,3 @@ Describe the important observation rather than pasting incidental output.
 ## Limitations
 
 State what this teaching example intentionally omits from a production implementation.
-

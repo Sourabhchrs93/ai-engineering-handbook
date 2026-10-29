@@ -17,7 +17,9 @@ After this chapter, you can:
 - distinguish tokens, token IDs, static embeddings, and contextual representations;
 - explain the problem self-attention solves;
 - describe how a Transformer produces a next-token prediction;
-- explain why fluent generation can still be factually wrong; and
+- explain why fluent generation can still be factually wrong;
+- explain how tokenizers, the context window, and the KV cache affect cost and latency;
+- distinguish embedding models from generative models; and
 - identify what an agent adds around an LLM.
 
 ## The governing mental model
@@ -69,6 +71,48 @@ extraordinary -> ["extra", "ordinary"]
 
 Tokenization is not linguistic normalization. The number of tokens affects context-window use, latency, and cost, so applications should measure with the model's actual tokenizer rather than estimate from word count.
 
+### How tokenizers are built
+
+Most modern tokenizers use byte-pair encoding (BPE) or a close variant such as SentencePiece or tiktoken. The tokenizer is trained before the model:
+
+1. Start from bytes or characters.
+2. Repeatedly merge the most frequent adjacent pair into a new vocabulary entry.
+3. Stop when the vocabulary reaches its target size.
+
+Frequent strings therefore become single tokens and rare strings are split into several pieces:
+
+```text
+"the"          -> ["the"]
+"unbelievable" -> ["un", "believ", "able"]
+"2026-10-29"   -> ["202", "6", "-", "10", "-", "29"]
+```
+
+The exact splits differ between tokenizers; these are illustrations, not the output of a specific model.
+
+A frequently quoted rule of thumb is roughly four characters of English text per token. Treat it as an estimate only. Code, JSON, numbers, and non-Latin scripts usually need more tokens for the same content.
+
+### Symptoms that come from tokenization
+
+| Symptom | Tokenization cause |
+| --- | --- |
+| Miscounting letters in a word | The model sees subword tokens, not individual letters |
+| Unreliable arithmetic on long numbers | Digits are grouped inconsistently into tokens |
+| Higher cost for some languages | Fewer merges were learned for those scripts, so text needs more tokens |
+| JSON output is expensive | Braces, quotes, and repeated keys each consume tokens |
+| The same prompt costs differently across providers | Each model family has its own tokenizer |
+
+### The context window
+
+The context window is the maximum number of tokens—input plus output—that the model can process in one call. It is the model's entire working space: nothing persists between calls unless the application sends it again.
+
+A larger window is not free:
+
+- cost grows with input tokens and latency grows with input and output length;
+- models use information placed in the middle of long contexts less reliably than information near the beginning or end ([Liu et al., "Lost in the Middle"](https://arxiv.org/abs/2307.03172)); and
+- quality tends to degrade as a context fills with loosely relevant material, which practitioners call *context rot* (see [context engineering](../memory/context-engineering.md)).
+
+Output length has its own, smaller limit, usually set with a `max_tokens` parameter.
+
 ## Token IDs are arbitrary labels
 
 After tokenization, each token maps to an integer in the model's vocabulary:
@@ -113,6 +157,18 @@ At a high level, each token produces:
 
 Query-key compatibility determines attention weights. Weighted values are combined to update the token representation. Multi-head attention performs several such relationship searches in parallel.
 
+In matrix form, scaled dot-product attention is:
+
+```text
+Attention(Q, K, V) = softmax(Q · Kᵀ / √d) · V
+```
+
+`Q · Kᵀ` scores every query against every key, dividing by `√d` (the vector dimension) keeps the scores in a range where softmax still produces useful gradients, and softmax turns each row of scores into weights that sum to one. The result is a weighted mix of value vectors for every position ([Vaswani et al., 2017](https://arxiv.org/abs/1706.03762)).
+
+Decoder-only LLMs apply a **causal mask**: a position may attend only to itself and earlier positions. That restriction is what makes left-to-right generation possible—the model never relies on tokens it has not produced yet.
+
+Because every position is compared with every earlier position, naive attention cost grows quadratically with sequence length. Optimized kernels and attention variants reduce the constant factor, but long inputs remain slower and more expensive than short ones.
+
 ## Transformers build contextual representations
 
 An initial embedding is like a person's identity; context determines the role the person is playing now. `John` may be driving in one sentence and cooking in another. Likewise, the initial identity of `bank` is refined differently by `deposit` and `money` than by `river` and `shore`.
@@ -138,6 +194,56 @@ The distinction is:
 - **Embedding:** a learned semantic starting point for a token.
 - **Transformer:** a mechanism that repeatedly turns those starting points into context-dependent representations.
 
+## Embedding models versus generative models
+
+The token embeddings inside a Transformer are different from the vectors returned by an *embedding model* API. An embedding model is trained to compress a whole passage into one fixed-length vector so passages can be compared. A generative model is trained to produce new tokens.
+
+| | Embedding model | Generative model |
+| --- | --- | --- |
+| Output | One fixed-length vector per input | A sequence of tokens |
+| Purpose | Compare meaning: search, clustering, deduplication, classification | Produce text: answers, summaries, tool calls |
+| Repeatability | Same vector for the same input and model version | Varies by default because output is sampled |
+| Relative cost | Low | Much higher per token |
+
+Similarity between two embeddings is usually measured with cosine similarity:
+
+```python
+import numpy as np
+
+
+def cosine(a: np.ndarray, b: np.ndarray) -> float:
+    return float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b)))
+```
+
+Three properties matter in practice:
+
+- Vectors from different embedding models are not comparable. Changing the model means re-embedding the whole corpus.
+- Embeddings capture topical similarity, not truth. Negation, exact numbers, and identifiers such as `E1234` versus `E1243` are often poorly separated, which is why retrieval systems combine embeddings with keyword search (see [retrieval and ranking](../rag/retrieval-and-ranking.md)).
+- An embedding is a representation for comparison; it never generates an answer by itself.
+
+## Inference mechanics: prefill, decode, and the KV cache
+
+Generation has two phases with different performance characteristics:
+
+- **Prefill** processes the whole input in parallel and produces the first output token. Its duration grows with input length and determines time to first token.
+- **Decode** produces output one token at a time, because each token depends on the previous ones. Output length therefore dominates total latency.
+
+During decoding, the keys and values already computed for earlier positions are stored in a **KV cache**, so each new token attends to cached vectors instead of recomputing the whole sequence.
+
+Providers extend the same idea across requests with **prompt caching**: if a new request begins with exactly the same prefix as a recent one, the cached computation for that prefix can be reused, lowering cost and latency. Because only an identical prefix can be reused, stable content—system instructions, tool definitions, reference documents—belongs at the start of the prompt. Pricing consequences are covered in [latency, cost, and rate limits](latency-cost-and-rate-limits.md).
+
+Autoregressive decoding has a reliability consequence too: every token is conditioned on the tokens before it, including the model's own earlier mistakes. An early wrong token can steer the rest of the output.
+
+## How training shapes behavior
+
+A deployed chat model is usually the product of several training stages:
+
+1. **Pretraining:** next-token prediction over a very large text corpus. The model acquires language patterns and a lossy store of facts.
+2. **Supervised fine-tuning:** training on curated instruction-and-response examples, so the model follows instructions instead of merely continuing text.
+3. **Preference and reinforcement tuning:** methods such as reinforcement learning from human or AI feedback, direct preference optimization, and reinforcement learning on verifiable tasks shape helpfulness, safety, reasoning, and tool use.
+
+Each stage explains observable behavior. Pretraining explains broad knowledge with a cut-off date. Instruction tuning explains why prompts work as task descriptions (see [prompt engineering](../prompting/prompt-engineering.md)). Preference tuning can also reward agreeable answers, one source of the sycophancy described in [failure modes and nondeterminism](failure-modes-and-nondeterminism.md).
+
 ## Why hallucinations happen
 
 The training objective rewards plausible next-token prediction, not fact verification. A fluent continuation can therefore be unsupported, stale, or wrong while remaining statistically plausible.
@@ -153,6 +259,8 @@ Systems reduce this risk by adding:
 - human review for consequential decisions.
 
 These controls ground or verify output; they do not turn the base model into an infallible fact store.
+
+The full set of contributing causes and a failure taxonomy are in [failure modes and nondeterminism](failure-modes-and-nondeterminism.md).
 
 ## From LLM to agent
 
@@ -219,6 +327,17 @@ Control logic selects an appropriate tool, the tool retrieves current data, and 
 2. Explain static versus contextual embeddings using an analogy from a backend system.
 3. Design the tool path for answering "How many orders failed in the last hour?" Include authorization, validation, and failure behavior.
 4. Identify which parts of that system are deterministic and which are probabilistic.
+5. Tokenize the same paragraph in English, Hindi, and as JSON with a real tokenizer. Compare the token counts.
+6. Explain what the KV cache stores and why prompt caching requires an identical prefix.
+7. When would you use an embedding model instead of asking a chat model whether two texts are similar?
+
+## References
+
+- Vaswani et al., [Attention Is All You Need (2017)](https://arxiv.org/abs/1706.03762)
+- Jay Alammar, [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+- 3Blue1Brown, [Attention in transformers, visually explained](https://www.youtube.com/watch?v=eMlx5fFNoYc)
+- Andrej Karpathy, [Let's build the GPT tokenizer](https://www.youtube.com/watch?v=zduSFxRajkE) and [Intro to large language models](https://www.youtube.com/watch?v=zjkBMFhNj_g)
+- Liu et al., [Lost in the Middle: How Language Models Use Long Contexts (2023)](https://arxiv.org/abs/2307.03172)
 
 ## Learning journal
 

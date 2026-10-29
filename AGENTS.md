@@ -14,7 +14,7 @@ These instructions apply to every AI coding or writing assistant working in the 
 - `docs/` contains the canonical handbook content.
 - `examples/` contains minimal runnable demonstrations.
 - `projects/` contains end-to-end applications that combine modules.
-- `docs/learning-journal/` preserves the learner's original answers, corrections, and evolving mental models.
+- Learning-journal pages (`*-qa.md`, stored beside the chapter they accompany) preserve the learner's original answers, corrections, and evolving mental models.
 - `templates/` defines the expected structure for new material.
 
 Do not copy raw chat transcripts into the handbook. Convert discussions into durable explanations while preserving valuable personal Q&A in the learning journal.
