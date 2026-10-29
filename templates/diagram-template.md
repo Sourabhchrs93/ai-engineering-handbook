@@ -21,4 +21,3 @@ Explain the important nodes, arrows, boundaries, and assumptions. A diagram shou
 - Owning chapter: `docs/path/to/chapter.md`
 - Last reviewed: YYYY-MM-DD
 - Update triggers: list architectural or terminology changes that require this diagram to be reviewed.
-

@@ -61,4 +61,3 @@ Discuss quality, reliability, latency, cost, security, privacy, and observabilit
 ## References
 
 - Add primary sources with descriptive links.
-

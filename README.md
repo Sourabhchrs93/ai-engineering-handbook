@@ -58,6 +58,7 @@ docs/
   tool-calling/  Model-to-software interfaces and execution boundaries
   rag/           Retrieval, grounding, ranking, and citation
   memory/        Context, conversational state, and durable memory
+  planning/      Workflows versus agents, ReAct, plan-and-execute, and graphs
   agents/        Planning, tool use, single agents, and multi-agent systems
   production/    Evaluation, reliability, security, observability, and operations
   mcp/           Model Context Protocol concepts and implementation guidance
@@ -105,4 +106,3 @@ AI coding assistants must also follow [AGENTS.md](AGENTS.md).
 ## License
 
 This project is available under the [MIT License](LICENSE).
-

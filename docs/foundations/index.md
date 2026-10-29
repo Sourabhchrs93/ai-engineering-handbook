@@ -10,4 +10,10 @@ AI engineering combines ordinary software engineering with probabilistic compone
 - Design fallbacks for model, dependency, and data failures.
 - Preserve the evidence needed to reproduce important decisions.
 
-Begin with [LLM fundamentals](llm-fundamentals.md), then continue with [model selection](model-selection.md).
+Begin with [LLM fundamentals](llm-fundamentals.md), then continue with:
+
+1. [Sampling and structured output](sampling-and-structured-output.md)
+2. [Latency, cost, and rate limits](latency-cost-and-rate-limits.md)
+3. [Failure modes and nondeterminism](failure-modes-and-nondeterminism.md)
+4. [Model selection](model-selection.md)
+5. [AI application pipeline](ai-application-pipeline.md)

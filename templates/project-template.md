@@ -54,4 +54,3 @@ List extensions that require the reader to make and defend engineering trade-off
 ## References
 
 - Add primary references used by the project.
-

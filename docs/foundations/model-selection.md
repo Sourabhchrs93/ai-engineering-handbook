@@ -16,3 +16,4 @@ Evaluate candidates on a representative dataset across:
 
 Use routing only after a single-model baseline is measured. Routing adds another decision system that must itself be evaluated, observed, and maintained.
 
+Routing strategies, caching, and cost budgets are covered in [cost and routing](../production/cost-and-routing.md). Unit costs and latency are explained in [latency, cost, and rate limits](latency-cost-and-rate-limits.md).
